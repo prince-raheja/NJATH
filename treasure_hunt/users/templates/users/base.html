@@ -1,0 +1,79 @@
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>
+		{% block title %}
+			Welcome to Njath
+		{% endblock title %}
+	</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="{% static 'css/navbar.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'css/index.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'css/sliderman.css' %}" rel="stylesheet" type="text/css"  />
+	<script src="{% static 'django_ajax/js/jquery-3.1.1.min.js'  %}"></script>
+	<script src="{% static 'django_ajax/js/jquery.ajax.min.js' %}"></script>
+	<script src="{% static 'js/sliderman.1.3.7.js' %}"></script>
+
+	{% block files %}
+
+	{% endblock files %}
+</head>
+
+<body>
+<div id="messages">
+	{% if messages %}
+        <div id="complete-hide">
+            <div id="message-display">
+            	{% for message in messages %}
+                	<p><h3>
+                		{% if "html_safe" in message.tags %} 
+							{{ message|safe }}
+						{% else %}
+							{{ message }}
+						{% endif %} 
+                	</h3></p>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+	
+	<nav class="cl-effect-9">
+
+
+	{% block navigation_bar %}
+	{% endblock navigation_bar %}
+		
+
+		<a href="{% url 'game:leaderboard' %}" >
+	        <span>Leaderboard</span>
+	        <span>View the Leaderboard</span>
+	    </a>
+	    <a href="http://www.facebook.com/iit.njath/app_202980683107053">
+	        <span>Forum</span>
+	        <span>The Discussion Forum</span>
+	   <!--  </a>
+	    <a href="http://2016.anwesha.info">
+	        <span>Anwesha</span>
+	        <span>Anwesha 2k16</span>
+	    </a> -->
+	    <a href="http://www.iitp.ac.in">
+	        <span>IIT Patna</span>
+	        <span>All about our college</span>
+	    </a>
+	</nav>
+
+
+	<!-- <div class='container'> -->
+	{% block content %}
+
+	{% endblock content %}
+	<!-- </div> -->
+</body>
+
+</html>

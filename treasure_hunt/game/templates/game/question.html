@@ -1,0 +1,60 @@
+{% extends "users/base.html" %}
+{% load staticfiles %}
+
+
+{% block title %}
+	NJATH Question - {{ question.slug }}
+{% endblock title %}
+
+
+
+{% block files %}
+	<script src="{% static 'js/question.js' %}"></script>
+{% endblock files %}
+
+
+
+{% block navigation_bar %}
+	<a href="{% url 'game:profile' %}">
+        <span>Profile</span>
+        <span>Your Homepage</span>
+    </a>
+    <a href="{% url 'users:logout' %}">
+        <span>Logout</span>
+        <span>Get out of Game!</span>
+    </a>
+{% endblock navigation_bar %}
+
+
+
+{% block content %}
+	<br><br><br><br><br>
+	{% if question_image %}
+		<div id="question">
+			{{ question.question }}
+		</div>
+		<div id="image_present">
+			{% if question_image %}
+				<img src="{{ question_image.image.url }}" alt="Question Image" style="width:304px;height:228px;">
+			{% endif %}
+		</div>
+	{% else %}
+		<div id="question">
+			{{ question.question }}
+		</div>
+	{% endif %}
+
+	<div id="answer">
+		<form  id="answer_form" method="post"> {% csrf_token %}
+		<span id="error_answer" style="color:white"></span>
+		<p>
+			<label for="answer">Answer:</label>
+			<input id="id_answer" name="answer" type="text"/>
+		</p>
+		<p>
+		<input type="button" class="btn btn-default" value="Submit" style="margin-left:1em" onclick='check_answer("{{ question.slug }}", "{% url 'game:check_answer' %}")'>
+		</p>
+	</form>
+	</div>
+
+{% endblock content %}

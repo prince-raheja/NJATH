@@ -1,0 +1,76 @@
+/*
+ * Copyright (C) 2014 radsaggi(ashutosh)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+* { 
+    margin: 0; 
+    outline: none; 
+}
+body {
+    background: url("/media/pro_cover.jpg") repeat scroll center center rgb(100, 91, 92);
+}
+h2 { 
+    padding: 20px 0 10px 0; 
+    font-size: 24px; 
+    line-height: 40px; 
+    font-weight: normal; 
+    color: #adc276; 
+    text-shadow: 0 1px 3px #222222; 
+}
+#table .data-table {
+    opacity: 0.9;
+    margin: 50px auto;
+    border-collapse:collapse;
+    font-family: 'Lato', Calibri, Arial, sans-serif;
+    border: none;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    background: #E58452;
+}
+#table .data-table th, #table .data-table td {
+    box-shadow: inset 0 -1px rgba(0,0,0,0.25), 
+        inset 0 1px rgba(0,0,0,0.25);
+}
+#table .data-table th {
+
+    font-weight: normal;
+
+    -webkit-font-smoothing: antialiased;
+    padding: 1em;
+    color: white /*rgba(0,0,0,0.45);*/
+    text-shadow: 0 0 1px rgba(0,0,0,0.1);
+    font-size: 1.5em;
+    background: #B86942;
+}
+#table .data-table td {
+    color: #f7f7f7;
+    padding: 0.7em 1em 0.7em 1.15em;
+    text-shadow: 0 0 1px rgba(255,255,255,0.1);
+    font-size: 1.4em;
+}
+#table .data-table tr.user {
+    color: #5483b4;
+}
+#table .data-table tr {
+    -webkit-transition: background 0.3s, box-shadow 0.3s;
+    -moz-transition: background 0.3s, box-shadow 0.3s;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+#table .data-table tr:hover {
+    background: rgba(0,0,0,0.19);
+}

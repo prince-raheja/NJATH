@@ -1,0 +1,59 @@
+{% extends "users/base.html" %}
+{% load staticfiles %}
+
+
+{% block title %}
+	Njath Leaderboard
+{% endblock title %}
+
+
+
+{% block files %}
+	<link href="{% static 'css/leaderboard.css' %}" rel="stylesheet" type="text/css" />
+{% endblock files %}
+
+
+
+{% block navigation_bar %}
+	{% if request.user.is_authenticated %}
+        <a href="{% url 'game:home' %}" >
+            <span>Questions</span>
+            <span>Resume the HUNT!</span>
+        </a>
+        <a href="{% url 'users:logout' %}?next={% url 'game:leaderboard' %}">
+            <span>Logout</span>
+            <span>Get out of Game!</span>
+        </a>
+    {% else %}
+        <a href="{% url 'users:login' %}?next={% url 'game:leaderboard' %}" >
+            <span>Login</span>
+            <span>Start the Awesome</span>
+        </a>
+        <a href="{% url 'users:register' %}">
+            <span>Register</span>
+            <span>New to the challenge ?</span>
+        </a>
+    {% endif %}
+{% endblock navigation_bar %}
+
+
+
+{% block content %}
+    <div id="table">
+            <table class="data-table">
+                <thead>
+                    <th>Sl. No.</th>
+                    <th>Username</th>
+                    <!-- <th>College</th> -->
+                    <th>Score</th>
+                </thead>
+                {% for user in users %}
+                    <tr>
+                        <td> {{ forloop.counter }} </td>
+                        <td> {{ user.user.username }} </td>
+                        <td>  {{ user.total_score }} </td>
+                    </tr>
+                {% endfor %}
+            </table>
+    </div>
+{% endblock content %}

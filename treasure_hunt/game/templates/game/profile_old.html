@@ -1,0 +1,102 @@
+{% extends "users/base.html" %}
+{% load staticfiles %}
+
+
+{% block title %}
+	NJATH Profile - {{ user.username }}
+{% endblock title %}
+
+
+
+{% block files %}
+	<link href="{% static 'css/profile.css' %}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{% static 'js/home.js' %}"></script>
+{% endblock files %}
+
+
+
+{% block navigation_bar %}
+	{% if request.user.is_authenticated %}
+		<a href="{% url 'game:home' %}" >
+	        <span>Questions</span>
+	        <span>Resume the HUNT!</span>
+	    </a>
+
+	    <a href="{% url 'users:logout' %}">
+	        <span>Logout</span>
+	        <span>Get out of Game!</span>
+	    </a>
+	{% else %}
+		<a href="{% url 'users:login' %}" >
+	        <span>Login</span>
+	        <span>Start the Awesome</span>
+	    </a>
+
+	    <a href="{% url 'users:register' %}">
+	        <span>Register</span>
+	        <span>New to the challenge ?</span>
+	    </a>
+	{% endif %}
+{% endblock navigation_bar %}
+
+
+
+{% block content %}
+
+<div id="user-info">
+    <h2 id="user">{{ user.username }}</h2>
+
+
+<br><br>
+	<table>
+		<tr>
+			<td>S.No.</td>
+			<td>Level</td>
+			<td>Status</td>
+			<td>Points</td>
+		</tr>
+		{% for question in questions %}
+			<tr>
+				<td>{{ forloop.counter }}</td>
+				<td>{{ question.level }}</td>
+				{% if question.id in answered_questions_ids %}
+					<td>Answered</td>
+				{% elif question.id in opened_questions_ids %}
+					<td>Opened</td>
+				{% else %}
+					<td>Unopened</td>
+				{% endif %}
+				<td>{{ question.score }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+
+	<br><br>
+
+	<table>
+		<tr>
+			<td>S.No.</td>
+			<td>Level</td>
+			<td>Score</td>
+			<td>Ques Answered</td>
+		</tr>
+			{% for level in levels %}
+				<tr>
+					<td>{{ forloop.counter }}</td>
+					<td>{{ level.level }}</td>
+					<td>{{ level.level_score }}</td>
+					<td>{{ level.total_question_answeredd }}</td>
+				</tr>
+			{% endfor %}
+			
+			{% if levels_count != max_levels %}
+				<td>{{ levels_count|add:"1" }}</td>
+				<td>{{ user_info.current_level }}</td>
+				<td>{{ level.current_level_score }}</td>
+				<td>{{ question_answered }}</td>
+			{% endif %}
+	</table>
+
+
+
+{% endblock content %}

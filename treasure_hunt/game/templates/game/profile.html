@@ -1,0 +1,87 @@
+{% extends "users/base.html" %}
+{% load staticfiles %}
+
+
+{% block title %}
+	NJATH Profile - {{ user.username }}
+{% endblock title %}
+
+
+
+{% block files %}
+	<link href="{% static 'css/profile.css' %}" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{% static 'js/profile.js' %}"></script>
+{% endblock files %}
+
+
+
+{% block navigation_bar %}
+	{% if request.user.is_authenticated %}
+		<a href="{% url 'game:home' %}" >
+	        <span>Questions</span>
+	        <span>Resume the HUNT!</span>
+	    </a>
+
+	    <a href="{% url 'users:logout' %}">
+	        <span>Logout</span>
+	        <span>Get out of Game!</span>
+	    </a>
+	{% else %}
+		<a href="{% url 'users:login' %}" >
+	        <span>Login</span>
+	        <span>Start the Awesome</span>
+	    </a>
+
+	    <a href="{% url 'users:register' %}">
+	        <span>Register</span>
+	        <span>New to the challenge ?</span>
+	    </a>
+	{% endif %}
+    <a href="{% url 'game:rules' %}">
+        <span>Rules</span>
+        <span>The law of the Land!!!</span>
+    </a>
+{% endblock navigation_bar %}
+
+
+
+{% block content %}
+	<div id="user-info">
+    	<h2 id="user">{{ user.username }}</h2><br>
+    	<h2 >Level : {{ user_info.current_level }}</h2><br>
+    	<h2 id="level-score">Total Score : {{ user_info.total_score }} </h2><br>
+    	<h2 id="total-score">Level Score : {{ user_info.current_level_score }}</h2>
+    	
+    	<div id="questions">
+    		{% for question in questions %}
+                    <button onclick='open_question({{ opened_count }}, "{% url 'game:question' question.slug %}",
+    			{% if question.id in answered_questions %}
+    				true)' class="btn btn-success" id="answered"
+    			{% elif question.id in opened_questions %}
+    				true)' class="btn btn-primary" id="opened" 
+    			{% else %}
+    				false)' class="btn btn-danger" id="unopened" 
+    			{% endif %}
+  				>Question {{forloop.counter}}</button>
+    		{% endfor %}
+    	</div>
+
+    	<div id="next_level">
+    		<!-- {% if answered_count >= 6 %}
+    			<button class="btn btn-default" 
+    			{% if opened_count > 6 %}
+    				onclick=""
+    			{% endif %}
+    				>Proceed to next level</button>
+    			
+    		{% endif %} -->
+            <br><br>
+            {% if answered_count >= 6 %}
+                <button class="btn btn-warning" onclick='next_level({{ opened_count }},"{% url 'game:next_level' %}", {{ user_info.current_level }})''>Go to Next Level</button>
+            {% endif %}
+
+    	</div>
+    </div>
+
+
+{% endblock content %}

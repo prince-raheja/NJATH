@@ -1,0 +1,77 @@
+{% extends "users/base.html" %}
+{% load staticfiles %}
+
+
+{% block title %}
+
+{% endblock title %}
+
+
+
+{% block files %}
+
+{% endblock files %}
+
+
+
+{% block navigation_bar %}
+
+{% endblock navigation_bar %}
+
+
+
+{% block content %}
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+	<a href="{% url 'users:login' %}" >
+        <span>Login</span>
+        <span>Start the Awesome</span>
+    </a>
+
+    <a href="{% url 'users:register' %}">
+        <span>Register</span>
+        <span>New to the challenge ?</span>
+    </a>
+
+    <a href="{% url 'game:leaderboard' %}">
+        <span>Leaderboard</span>
+        <span>View the Leaderboard</span>
+    </a>
+
+    <a href="{% url 'game:rules' %}">
+        <span>Rules</span>
+        <span>The law of the Land!!!</span>
+    </a>
+
+    <a href="{% url 'game:home' %}" >
+        <span>Questions</span>
+        <span>Resume the HUNT!</span>
+    </a>
+
+
+    <a href="{% url 'game:profile' %}">
+        <span>Profile</span>
+        <span>Your Homepage</span>
+    </a>
+    <a href="{% url 'users:logout' %}">
+        <span>Logout</span>
+        <span>Get out of Game!</span>
+    </a>
+
+    
+    
+
+    {% if request.user.is_authenticated %}
+
+    {% else %}
+
+    {% endif %}

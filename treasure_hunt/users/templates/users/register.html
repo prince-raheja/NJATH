@@ -1,0 +1,80 @@
+{% extends "users/base.html" %}
+{% load staticfiles%}
+
+
+{% block title %}
+	Njath Login
+{% endblock title %}
+
+{% block files %}
+	<link href="{% static 'css/register.css' %}" type="text/css" rel="stylesheet" />
+	<script src="{% static 'js/register.js' %}"></script>
+{% endblock files %}
+
+
+
+{% block navigation_bar %}
+	<a href="{% url 'users:login' %}" >
+        <span>Login</span>
+        <span>Start the Awesome</span>
+    </a>
+    <a href="{% url 'game:rules' %}">
+        <span>Rules</span>
+        <span>The law of the Land!!!</span>
+    </a>
+{% endblock navigation_bar %}
+
+
+
+{% block content %}
+<div id="wrapper">
+	<form  id="register" method="post"> 
+		<h1> Sign up </h1>
+		<span id="error_registration" style="color:red"></span>
+		<span id="successful_registration" align='center' style="color:blue"></span>
+		
+		<p>
+			<label for="usernamesignup">
+                Username<span class="asteriskField">*</span> 
+            </label> 
+            	<input id="usernamesignup" maxlength="30" name="username" type="text" placeholder="eg. thejoker69"/> 
+            	<span id="error_username" style="color:red"></span>
+        </p>
+
+        <p>
+            <label for="anweshasignup" class="anwesha">
+                	Email address<span class="asteriskField">*</span>
+            </label> 
+            	<input id="usernamesignup" name="email" type="email" placeholder="@iitp.ac.in" /> 
+            	<span id="error_email" style="color:red"></span>
+     	</p>
+
+     	<p>
+			<label for="passwordsignup" >
+				Password<span class="asteriskField">*</span>
+			</label>
+				<input id="anweshasignup" name="password" type="password" placeholder="eg. X8df!90EO" />
+				<span id="error_password" style="color:red"></span>
+		</p>
+
+		<p>
+			<label for="id_confirm_password" >
+				Confirm Password<span class="asteriskField">*</span>
+			</label>
+				<input class="confirmpasswordinput" id="id_confirm_password" type="password" name="confirm_password" placeholder="same as above"> <span id="error_matching" style="color:red"></span>
+		</p>
+
+
+		<p class="signin button">
+		<input type="button" class="btn btn-primary" value="Submit" onclick="register_check()">
+		</p>
+
+		<p class="change_link">
+		Already a member ?<a href="{% url 'users:login' %}" class="to_register"> Go and log in </a>
+        </p>
+	</form>
+</div>
+
+{% endblock content %}
+
+

@@ -1,0 +1,44 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script type="text/javascript" src="{% static 'js/home.js' %}"></script>
+	<title></title>
+</head>
+<body>	
+<br><br><br>
+Current Level : Level {{ user_info.current_level }}<br>
+Total Score : {{ user_info.total_score }}<br>
+
+	{% for question_id in question_ids %}
+		<button id="{{question_id}}" onclick=
+		{% if question_id in answered_questions  %}
+			"open_question(true,{{ question_id }})" class="btn btn-success">Solved Question 
+		{% elif question_id in user_opened_answers %}
+			"open_question(true,{{ question_id }})" class="btn btn-primary">Opened Question 
+		{% else %}
+			"open_question(false,{{ question_id }})" class="btn btn-danger">Unopened Question
+		{% endif %}
+		{{forloop.counter}}
+		</button><br><br>
+	{% endfor %}
+
+	<div id="question">
+		{{ question.question  }}	
+	</div>
+	
+	<div id="image_present">
+		{% if question_image %}
+			<img src="{{ question_image.image.url }}" alt="Question Image" style="width:304px;height:228px;">
+		{% endif %}
+	</div>
+	<div id="answer">
+		
+	</div>	
+
+</body>
+</html>
+</body>
+</html>

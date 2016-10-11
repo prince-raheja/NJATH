@@ -1,0 +1,111 @@
+{% extends "users/base.html" %}
+{% load staticfiles%}
+
+
+{% block title %}
+	Njath 2016 Login
+{% endblock title %}
+
+
+{% block files %}
+	<script src="{% static 'js/login.js' %}"></script>
+{% endblock files %}
+
+
+{% block navigation_bar %}
+    <a href="{% url 'users:register' %}">
+        <span>Register</span>
+        <span>New to the challenge?</span>
+    </a>
+    <a href="{% url 'game:rules' %}">
+        <span>Rules</span>
+        <span>The Law of the Land!!</span>
+    </a>
+
+{% endblock navigation_bar %}
+
+
+
+
+{% block content %}
+
+    <!-- login form starts -->
+	<div class="login" >
+	<h2> Login </h2>
+	<form  id="login_form" method="post"> {% csrf_token %}
+		<span id="error_login" style="color:white"></span>
+		<p>
+			<label for="login" >Username:</label>
+            <input type="text" name="username" id="login" autofocus="true"/> 
+		</p> 
+
+		<p>
+			<label for="password">Password:</label>
+			<input id="id_password" name="password" type="password"/>
+		</p>
+		<!-- <p class="login-submit"> -->
+		<p>
+		<input type="button" class="btn btn-default" value="Login" style="margin-left:1em" onclick="login_check()">
+		<!-- <button class="login-button" onclick="login_check()">Login</button> -->
+		<!-- <input type="button" class="login-submit" value="Login" onclick="login_check()">Login -->
+		</p>
+	</form>
+	</div>
+
+    <!-- login form ends -->
+
+
+
+	  <!--image slider started-->
+        <div id="wrapper">
+
+            <div id="examples_outer">
+
+                <div id="slider_container_2">
+
+                    <div id="SliderName_2" class="SliderName_2">
+                        <img src="/media/1.jpg" width=100% height=100% alt="Demo2 first" title="Demo2 first" usemap="#img1map" />
+                        <map name="img1map">
+                            <area href="#img1map-area1" shape="rect" coords="100,100,200,200" />
+                            <area href="#img1map-area2" shape="rect" coords="300,100,400,200" />
+                        </map>
+                        <div class="SliderName_2Description">IIT PATNA PRESENTS :: <strong> NJATH</strong></div>
+                        <img src="/media/2.jpg" width=2000" height="450" alt="Demo2 second" title="Demo2 second" />
+                        <div class="SliderName_2Description"><strong>NOT JUST ANOTHER TREASURE HUNT </strong></div>
+                        <img src="/media/3.jpg" width="2000" height="450" alt="Demo2 third" title="Demo2 third" />
+                        <div class="SliderName_2Description"><strong>COMPLETE LEVELS TO ADVANCE</strong> </div>
+                        <img src="/media/5.jpg" width="2000" height="450" alt="Demo2 fifth" title="Demo2 fifth" />
+                        <div class="SliderName_2Description"><strong>SEARCH FOR CLUES</strong> </div>
+                        <img src="/media/6.jpg" width="2000" height="450" alt="Demo2 sixth" title="Demo2 sixth" />
+                        <div class="SliderName_2Description"><strong>STORM YOUR BRAIN</strong> </div>
+                        <img src="/media/7.jpg" width="2000" height="450" alt="Demo2 seventh" title="Demo2 seventh" />
+                        <div class="SliderName_2Description"><strong>READ THE QUESTION CAREFULLY</strong> </div>
+                        
+                    </div>
+                    <div class="c"></div>
+                    <div id="SliderNameNavigation_2"></div>
+                    <div class="c"></div>
+
+                    <script type="text/javascript">
+                        effectsDemo2 = 'rain,stairs';
+                        var demoSlider_2 = Sliderman.slider({container: 'SliderName_2', width: 700, height: 450, effects: effectsDemo2,
+                            display: {
+                                autoplay: 3000,
+                                loading: {background: '#000000', opacity: 0.5, image: '/media/loading.gif'},
+                                buttons: {hide: false, opacity: 1, prev: {className: 'SliderNamePrev_2', label: ''}, next: {className: 'SliderNameNext_2', label: ''}},
+                                description: {hide: false, background: '#000000', opacity: 0.4, height: 50, position: 'bottom'},
+                                navigation: {container: 'SliderNameNavigation_2', label: '<img src="/media/clear.gif" />'}
+                            }
+                        });
+                    </script>
+
+                    <div class="c"></div>
+                </div>
+                <div class="c"></div>
+            </div>
+
+            <div class="c"></div>
+        </div>
+        <!--image slider finished-->
+
+{% endblock content %}
