@@ -16,8 +16,8 @@
 
 {% block navigation_bar %}
 	{% if request.user.is_authenticated %}
-        <a href="{% url 'game:home' %}" >
-            <span>Questions</span>
+        <a href="{% url 'game:profile' %}" >
+            <span>Profile</span>
             <span>Resume the HUNT!</span>
         </a>
         <a href="{% url 'users:logout' %}?next={% url 'game:leaderboard' %}">
@@ -34,6 +34,10 @@
             <span>New to the challenge ?</span>
         </a>
     {% endif %}
+    <a href="{% url 'game:rules' %}">
+        <span>Rules</span>
+        <span>The law of the Land!!!</span>
+    </a>
 {% endblock navigation_bar %}
 
 

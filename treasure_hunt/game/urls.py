@@ -1,11 +1,11 @@
 from django.conf.urls import url
 
-from game.views import home, leaderboard, rules, profile, open_question, next_level, check_answer
+from game.views import leaderboard, rules, profile, open_question, next_level, check_answer
 
 app_name = 'game'
 
 urlpatterns = [
-	url(r'^$', home, name='home'),
+	# url(r'^$', home, name='home'),
 	url(r'^leaderboard$',leaderboard, name='leaderboard'),
 	url(r'^profile$', profile, name='profile'),
 	url(r'^rules$', rules, name='rules'),

@@ -13,6 +13,8 @@ QUESTION_LEVEL = (
 	(6, 'Level 6')
 )
 
+minumum_level_points = 40
+
 class Questions(models.Model):
 	level = models.IntegerField(choices=QUESTION_LEVEL, null=False, blank=False)
 	question = models.TextField(blank=False, null=False)
@@ -80,6 +82,7 @@ class UserInfo(models.Model):
 	current_level = models.IntegerField(choices=QUESTION_LEVEL, null=False, blank=False, default=1)
 	current_level_score = models.IntegerField(default=40, null=False, blank=False)
 	current_level_opened_questions = models.IntegerField(default=0, null=False, blank=False)
+	current_level_answered_questions = models.IntegerField(default=0, null=False, blank=False)
 	total_score = models.IntegerField(default=0, null=False, blank=False)
 	updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 	disqualified = models.BooleanField(default=False,null=False, blank=False)
@@ -99,6 +102,7 @@ class UserLevelProgress(models.Model):
 	user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,db_index=True)
 	level = models.IntegerField(choices=QUESTION_LEVEL, null=False, blank=False, default=1)
 	level_score = models.IntegerField(null=False, blank=False)
+	total_opened_questions = models.IntegerField(default=0, null=False,blank=False)
 	total_question_answered = models.IntegerField(default=0, null=False, blank=False)
 	updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
