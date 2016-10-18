@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.urlresolvers import reverse
+from django.views.decorators.csrf import csrf_exempt
 
 # third party django app imports
 from django_ajax.decorators import ajax
@@ -55,6 +56,7 @@ def register(request):
 		messages.success(request, 'Already Registered')
 		return HttpResponseRedirect(response('game:home'))
 	return render(request, 'users/register.html')
+
 
 @ajax
 def register_save(request):
