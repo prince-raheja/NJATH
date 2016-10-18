@@ -25,7 +25,7 @@ SECRET_KEY = 'e#hsnb@zu6x0fnpskv)8ck1ypnc!u1!di&1pk6wtu-=jnum!qv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -96,9 +96,9 @@ DATABASES = {
 
     'default' : {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'treasure_hunt',
+        'NAME': 'treasure_hunt_github',
         'USER': 'prince',
-        'PASSWORD': 'prince_raheja',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

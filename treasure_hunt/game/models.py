@@ -13,7 +13,6 @@ QUESTION_LEVEL = (
 	(6, 'Level 6')
 )
 
-minumum_level_points = 40
 
 class Questions(models.Model):
 	level = models.IntegerField(choices=QUESTION_LEVEL, null=False, blank=False)

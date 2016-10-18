@@ -18,11 +18,13 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from users.views import login
 
 urlpatterns = [
+    url(r'^$', login, name='index_login'),
     url(r'^users/',include('users.urls')),
     url(r'^treasure_hunt/', include('game.urls')),
-    url(r'^admin/', admin.site.urls),
+    url(r'^@DM!N/', admin.site.urls),
 ]
 
 if settings.DEBUG :
