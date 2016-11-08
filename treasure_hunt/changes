@@ -1,5 +1,0 @@
-1. make a separate css file for change_password.html and then make corresponding changes in change_password.js by using meaningful names
-2. add recaptcha in update_password view
-3. uncomment all the recaptcha verifications
-4. hide google recaptcha keys and email username and password
-5. hide database details as well

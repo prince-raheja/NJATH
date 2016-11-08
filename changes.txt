@@ -1,0 +1,25 @@
+-> install packages in other-requirements.txt
+
+-> create a virtual environment
+	https://virtualenv.pypa.io/en/stable/
+
+-> install python requirements using pip 
+	pip install python-requirements.txt
+
+-> add recaptcha private and public key in treasure_hunt/users/views.py
+	Line 33 , 34
+
+-> add email_id, password, organiser name, contact etc. in treasure_hunt/treasure_hunt/tasks.py 
+	this is valid for only gmail email_id 
+	for other email_id refer to python smtplib module
+	Line 16 - 21
+
+-> if you want to use other broker and backend for celery 
+	change in treasure_hunt/treasure_hunt/_celery.py 
+	line 11-16
+
+-> configure your database in treasure_hunt/treasure_hunt/settings.py 
+	line 94-108
+
+-> NOW YOU ARE GOOD TO GO!!!
+   REFER TO starting_server.txt TO RUN THE WEBSITE

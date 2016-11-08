@@ -1,0 +1,19 @@
+REFER FIRST TO changes.txt TO MAKE IMPORTANT CHANGES
+
+-> Start Your Database Server at the Port mentioned in treasure_hunt/treasure_hunt/settings.py 
+	check the NAME, USER, PASSWORD, HOST, PORT are properly configured
+
+-> Start Redis server(or other if changed) for celery 
+	For redis port should be 6379 (this is the default port)
+	if you want to use different port (change in treasure_hunt/treasure_hunt/_celery.py at line 13)
+
+-> make DEBUG = False in treasure_hunt/treasure_hunt/settings.py
+	line 26
+
+
+-> start celery server 
+	change directory to project's treasure_hunt directory (one containing manage.py file)
+	run -> celery -A treasure_hunt worker -l info
+
+-> run django server
+	run-> python manage.py runserver ip_address:port

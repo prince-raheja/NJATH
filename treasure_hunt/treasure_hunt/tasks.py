@@ -13,9 +13,12 @@ def send_email(url, username, email,purpose):
 	ACTIVATION = 'ACTIVATION'
 	CHANGE_PASSWORD = 'CHANGE_PASSWORD'
 
-	fromaddr = 'ENTER YOUR EMAIL HERE'
-	password = 'ENTER YOUR PASSWORD HERE'
-	my_username = fromaddr
+	FROMADDR = 'ENTER YOUR EMAIL HERE'
+	PASSWORD = 'ENTER YOUR PASSWORD HERE'
+	MY_USERNAME = FROMADDR
+	ORGANISER = 'ENTER ORGANISER NAME HERE'
+	DESIGNATION = 'ENTER DESIGNATION HERE (like -> Junior Year IIT Patna)'
+	CONTACT = 'ENTER CONTACT DETAILS HERE'
 
 	if purpose == ACTIVATION:
 		msg = "\r\n".join([
@@ -31,34 +34,33 @@ def send_email(url, username, email,purpose):
 				  "Click on this link to activate your account " + url,
 				  "\n\n",
 				  "With Best Regards,",
-				  "Prince",
-				  "Junior Year, IIT Patna",
-				  "contact : 9006697127",
+				  ORGANISER,
+				  DESIGNATION,
+				  "contact : " + CONTACT,
 			 	])
 
 	elif purpose == CHANGE_PASSWORD:
 		msg = "\r\n".join([
-				  "From: " + fromaddr,
+				  "From: " + FROMADDR,
 				  "To: " + email  ,
 				  "Subject: Request for changing NJATH Account Password",
 				  "",
-				  "Request is received for password change for your account",
+				  "Request is received for PASSWORD change for your account",
 				  "Your username is : " + username,
 				  "\n",
-				  "Click on this link to change your password " + url,
+				  "Click on this link to change your PASSWORD " + url,
 				  "\n", 
 				  "If this was not you, please ignore this mail",
 				  "\n\n",
 				  "With Best Regards,",
-				  "Prince",
-				  "Junior Year, IIT Patna",
-				  "contact : 9006697127",
+				  ORGANISER,
+				  DESIGNATION,
+				  "contact : " + CONTACT,
 		 	])
 
 	server = smtplib.SMTP_SSL()
 	server.connect("smtp.gmail.com",465)
 	server.ehlo()
-	# server.starttls()
-	server.login(my_username,password)
-	server.sendmail(fromaddr, email, msg)
+	server.login(MY_USERNAME,PASSWORD)
+	server.sendmail(FROMADDR, email, msg)
 	server.quit()
