@@ -42,22 +42,6 @@
         <span>New to the challenge ?</span>
     </a>
 
-    <a href="{% url 'game:leaderboard' %}">
-        <span>Leaderboard</span>
-        <span>View the Leaderboard</span>
-    </a>
-
-    <a href="{% url 'game:rules' %}">
-        <span>Rules</span>
-        <span>The law of the Land!!!</span>
-    </a>
-
-    <a href="{% url 'game:home' %}" >
-        <span>Questions</span>
-        <span>Resume the HUNT!</span>
-    </a>
-
-
     <a href="{% url 'game:profile' %}">
         <span>Profile</span>
         <span>Your Homepage</span>
@@ -66,6 +50,30 @@
         <span>Logout</span>
         <span>Get out of Game!</span>
     </a>
+    <a href="{% url 'users:change_password' %}">
+        <span>Change Passwd</span>
+        <span>Bored of Previous Passwd</span>
+    </a>
+
+    <a href="{% url 'game:rules' %}">
+        <span>Rules</span>
+        <span>The law of the Land!!!</span>
+    </a>
+
+    <a href="{% url 'game:leaderboard' %}">
+        <span>Leaderboard</span>
+        <span>View the Leaderboard</span>
+    </a>
+
+    
+
+    <a href="{% url 'game:home' %}" >
+        <span>Questions</span>
+        <span>Resume the HUNT!</span>
+    </a>
+
+
+    
 
     
     
@@ -75,3 +83,23 @@
     {% else %}
 
     {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+query to generate questions
+questions = range(1,9)
+level = range(1,7)
+for i in level:
+    for j in questions:
+        Questions.objects.create(level=i, question='Question ' + str(j), answer='answer'+str(j),slug='lvl-'+str(i)+'-que-'+str(j),score=20*i, penalty=10*i)

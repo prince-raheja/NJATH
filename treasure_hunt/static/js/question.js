@@ -20,7 +20,8 @@ function check_answer(question_slug, url){
 			if(content.error){
 				document.getElementById('error_answer').innerHTML = content.error_info;
 			}else{
-				location.href = content.redirect;
+				if(content.redirect)
+					location.href = content.redirect;
 			}
 		});
 	}

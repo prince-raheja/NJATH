@@ -8,6 +8,8 @@
 
 
 {% block files %}
+    <script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 	<script src="{% static 'js/login.js' %}"></script>
 {% endblock files %}
 
@@ -22,9 +24,9 @@
         <span>The Law of the Land!!</span>
     </a>
     <a href="{% url 'game:leaderboard' %}" >
-        <span>Leaderboard</span>
-        <span>View the Leaderboard</span>
-    </a>
+            <span>Leaderboard</span>
+            <span>View the Leaderboard</span>
+        </a>
 {% endblock navigation_bar %}
 
 
@@ -35,7 +37,7 @@
     <!-- login form starts -->
 	<div class="login" >
 	<h2> Login </h2>
-	<form  id="login_form" method="post"> {% csrf_token %}
+	<form  id="login_form" method="post">
 		<span id="error_login" style="color:white"></span>
 		<p>
 			<label for="login" >Username:</label>
@@ -46,13 +48,23 @@
 			<label for="password">Password:</label>
 			<input id="id_password" name="password" type="password"/>
 		</p>
-		<!-- <p class="login-submit"> -->
+        <div class="g-recaptcha" data-sitekey="{{recaptcha_public_key}}"></div>
 		<p>
+            <input type="button" class="btn btn-danger" value="Forgot Password" onclick="forgot_password()">
+        </p>
+        <p>
 		<input type="button" class="btn btn-default" value="Login" style="margin-left:1em" onclick="login_check()">
-		<!-- <button class="login-button" onclick="login_check()">Login</button> -->
-		<!-- <input type="button" class="login-submit" value="Login" onclick="login_check()">Login -->
 		</p>
 	</form>
+    
+    <div id="info">
+        <form id="info_form" >
+            {% csrf_token %}
+            <input type="hidden" name="login_check_url" value="{{ login_check_url }}">
+            <input type="hidden" name="forgot_password_url" value="{{ forgot_password_url }}">
+        </form>
+    </div>
+
 	</div>
 
     <!-- login form ends -->

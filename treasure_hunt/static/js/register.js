@@ -21,13 +21,11 @@ var register_check = function(){
 	var password_regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
 	var register_form = document.getElementById("register");
-
 	var username = register_form.username.value;
 	var email = register_form.email.value;
 	var password = register_form.password.value;
 	var confirm_password = register_form.confirm_password.value;
 
-	console.log(username_regex.test(username));
 	user_info = {};
 	var error = false;
 
@@ -52,7 +50,6 @@ var register_check = function(){
 		}
 		else{
 			document.getElementById('error_matching').innerHTML = 'Passwords Don\'t Match';
-			 
 			error = true;	
 		}
 	}else{
@@ -62,6 +59,9 @@ var register_check = function(){
 
 	if(!error){
 		remove_error(['error_username','error_email','error_password','error_matching','error_registration']);
+		user_info.recaptcha = register_form['g-recaptcha-response'].value;
+		user_info.csrfmiddlewaretoken = csrfmiddlewaretoken;
+		console.log(user_info.recaptcha);
 		ajaxPost('/users/register_done', user_info, function(response){
 			response = JSON.parse(response);
 			console.log(response);
@@ -72,11 +72,8 @@ var register_check = function(){
 					document.getElementById('error_registration').innerHTML = content.error_info;
 				}else{
 					document.getElementById('successful_registration').innerHTML = 'Successfully Registered';
-
-					// this function allows url change after 1000 ms
-					sleep(1000).then(() => {
+					if(content.redirect)
 						location.href = content.redirect;
-					});
 				}
 			}
 		});
@@ -84,18 +81,10 @@ var register_check = function(){
 	
 }
 
+var csrfmiddlewaretoken;
 
+window.onload = function(){
+	csrfmiddlewaretoken = document.getElementById('csrf_form').csrfmiddlewaretoken.value;
+	document.getElementById('csrf').innerHTML = '';
+}	
 
-// testing function for trying out ajax -> remove in final version
-var bcd = function(id){
-	var abc = {};
-	abc.hi = 'hi'; abc.bi = 'bi';
-	console.log('hi');
-	ajaxPost('/users/register_done', abc ,function(response){
-	        //onSuccess
-	        content = response.content;
-	        console.log(response);
-	        var two = document.getElementById(id);
-	        two.innerHTML = content.hello;
-    	})
-}

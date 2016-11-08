@@ -19,14 +19,14 @@ function open_question(opened_count, redirect_url, opened){
 
 
 function next_level(opened_count, redirect_url,current_level){
-	if(opened_count <= 6){
+	if(opened_count > 6){
 		var r = confirm('Are you sure you want to proceed to Next Level. You cannot come back...');
 		if(r){
 			location.href = redirect_url;
 		}
 	}else{
 		var r = confirm('You have opened a bonus question. Proceeding to next level will \
-result in a HIGH PENALTY of ' + current_level*10 + ' POINTS. Also you cannot come back.....' );
+			result in a HIGH PENALTY of ' + current_level*10 + ' POINTS' );
 		if(r){
 			location.href = redirect_url;
 		}

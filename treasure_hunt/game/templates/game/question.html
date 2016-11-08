@@ -19,13 +19,13 @@
         <span>Profile</span>
         <span>Your Homepage</span>
     </a>
+    <a href="{% url 'users:change_password' %}">
+        <span>Change Passwd</span>
+        <span>Bored of Previous Passwd</span>
+    </a>
     <a href="{% url 'users:logout' %}">
         <span>Logout</span>
         <span>Get out of Game!</span>
-    </a>
-    <a href="{% url 'game:rules' %}">
-        <span>Rules</span>
-        <span>The law of the Land!!!</span>
     </a>
     <a href="{% url 'game:leaderboard' %}" >
         <span>Leaderboard</span>

@@ -25,7 +25,7 @@ SECRET_KEY = 'e#hsnb@zu6x0fnpskv)8ck1ypnc!u1!di&1pk6wtu-=jnum!qv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -41,9 +41,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # third party apps
+    'djcelery',
     'django_extensions',
     'django_ajax',
     'crispy_forms',
+    # 'captcha',
+    # 'tracking',
 
     # my apps
     'users',
@@ -60,7 +63,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    # added by me
+    # django_ajax middleware
     'django_ajax.middleware.AJAXMiddleware',
 ]
 
@@ -96,7 +99,7 @@ DATABASES = {
 
     'default' : {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'treasure_hunt_github',
+        'NAME': 'treasure_hunt',
         'USER': 'prince',
         'PASSWORD': 'prince_raheja',
         'HOST': '127.0.0.1',
@@ -129,7 +132,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE =  'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -149,32 +152,10 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn')
 
-
 LOGIN_URL = '/users/login'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media_cdn')
 
-
-
-
-
 # form making forms look good
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
-
-
-
-
-
-
-# LOGGING = {
-#         'version': 1,
-#         'disable_existing_loggers': False,
-#         'loggers': {
-#             'django_ajax': {
-#                 'handlers': ['console'],
-#                 'level': 'INFO'
-#             },
-
-#         }
-#     }

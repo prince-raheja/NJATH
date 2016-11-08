@@ -13,16 +13,14 @@ QUESTION_LEVEL = (
 	(6, 'Level 6')
 )
 
-
 class Questions(models.Model):
 	level = models.IntegerField(choices=QUESTION_LEVEL, null=False, blank=False)
 	question = models.TextField(blank=False, null=False)
 	answer = models.CharField(max_length=40)
-	slug = models.TextField(unique=True,blank=False,null=False)
+	slug = models.CharField(max_length=100,unique=True,blank=False,null=False)
 	penalty = models.IntegerField(null=False,blank=False)
 	score = models.IntegerField(null=False, blank=False)
 	# user is one who uploaded the question
-	user = models.ForeignKey(User, related_name='questions',on_delete=models.SET_NULL, null=True)
 	updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
 
@@ -46,7 +44,7 @@ class QuestionImage(models.Model):
 
 class UserAnswers(models.Model):
 	question = models.ForeignKey(Questions, on_delete=models.CASCADE, db_index=True)
-	user = models.ForeignKey(User,on_delete=models.SET_NULL, null=True)
+	user = models.ForeignKey(User,on_delete=models.CASCADE, null=True)
 	correct_answer = models.BooleanField(default=False, null=False, blank=False)
 	answer = models.CharField(max_length=40, null=False, blank=False)
 	timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
@@ -81,7 +79,6 @@ class UserInfo(models.Model):
 	current_level = models.IntegerField(choices=QUESTION_LEVEL, null=False, blank=False, default=1)
 	current_level_score = models.IntegerField(default=40, null=False, blank=False)
 	current_level_opened_questions = models.IntegerField(default=0, null=False, blank=False)
-	current_level_answered_questions = models.IntegerField(default=0, null=False, blank=False)
 	total_score = models.IntegerField(default=0, null=False, blank=False)
 	updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 	disqualified = models.BooleanField(default=False,null=False, blank=False)
@@ -98,10 +95,9 @@ class UserInfo(models.Model):
 
 
 class UserLevelProgress(models.Model):
-	user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,db_index=True)
+	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True,db_index=True)
 	level = models.IntegerField(choices=QUESTION_LEVEL, null=False, blank=False, default=1)
 	level_score = models.IntegerField(null=False, blank=False)
-	total_opened_questions = models.IntegerField(default=0, null=False,blank=False)
 	total_question_answered = models.IntegerField(default=0, null=False, blank=False)
 	updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 

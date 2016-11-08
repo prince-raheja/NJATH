@@ -24,6 +24,10 @@
             <span>Logout</span>
             <span>Get out of Game!</span>
         </a>
+        <a href="{% url 'users:change_password' %}">
+            <span>Change Passwd</span>
+            <span>Bored of Previous Passwd</span>
+        </a>
     {% else %}
         <a href="{% url 'users:login' %}?next={% url 'game:leaderboard' %}" >
             <span>Login</span>
@@ -36,7 +40,7 @@
     {% endif %}
     <a href="{% url 'game:rules' %}">
         <span>Rules</span>
-        <span>The law of the Land!!!</span>
+        <span>The Law of the Land!!</span>
     </a>
 {% endblock navigation_bar %}
 

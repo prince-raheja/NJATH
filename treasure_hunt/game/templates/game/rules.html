@@ -22,6 +22,10 @@
             <span>Logout</span>
             <span>Get out of Game!</span>
         </a>
+        <a href="{% url 'users:change_password' %}">
+            <span>Change Passwd</span>
+            <span>Bored of Previous Passwd</span>
+        </a>
     {% else %}
         <a href="{% url 'users:login' %}?next={% url 'game:rules' %}" >
             <span>Login</span>
@@ -32,7 +36,7 @@
             <span>New to the challenge ?</span>
         </a>
     {% endif %}
-    <a href="{% url 'game:leaderboard' %}" >
+     <a href="{% url 'game:leaderboard' %}" >
         <span>Leaderboard</span>
         <span>View the Leaderboard</span>
     </a>

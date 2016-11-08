@@ -35,22 +35,59 @@ var login_check = function(){
 		var user_info = get_variables();
 		user_info.username = username;
 		user_info.password = password;
-		console.log(user_info)
-		ajaxPost('/users/login_done', user_info, function(response){
+		user_info.recaptcha = login_form['g-recaptcha-response'].value;
+		// console.log(user_info.recaptcha);
+		user_info.csrfmiddlewaretoken = csrfmiddlewaretoken;
+		ajaxPost(login_check_url, user_info, function(response){
 			response = JSON.parse(response);
 			content = response.content;
 			console.log(response);
 			if(content.error){
 				document.getElementById('error_login').innerHTML = content.error_info;
 			}else{
-				location.href = content.redirect;
+				if(content.redirect)
+					location.href = content.redirect;
 			}
 		})
 	}
 };
 
 
+var forgot_password = function(){
+	var login_form = document.getElementById("login_form");
+	var username = login_form.username.value;
+	if(username == ''){
+		document.getElementById('error_login').innerHTML = 'Username cannot be empty';
+	}else{
+		user_info = {};
+		user_info.username = username;
+		user_info.recaptcha = login_form['g-recaptcha-response'].value;
+		user_info.csrfmiddlewaretoken = csrfmiddlewaretoken;
+		ajaxPost(forgot_password_url, user_info, function(response){
+			response = JSON.parse(response);
+			content = response.content;
+			if(content.error){
+				document.getElementById('error_login').innerHTML = content.error_info;
+			}else{
+				if(content.redirect)
+					location.href = content.redirect;
+			}
+		});
+	}
 
+}
+
+
+var content, csrfmiddlewaretoken, login_check_url, forgot_password_url;
+
+window.onload = function(){
+	var info_form = document.getElementById('info_form');
+	csrfmiddlewaretoken = info_form.csrfmiddlewaretoken.value;
+	login_check_url = info_form.login_check_url.value;
+	forgot_password_url = info_form.forgot_password_url.value;
+	console.log(forgot_password_url);
+	document.getElementById('info').innerHTML = '';
+}	
 
 // copied from previous code  refer js/g.js for info
 function init_1(){
@@ -76,8 +113,3 @@ function hide_head(){
 	$("div.nav").css("opacity",op);
 	var TIMER=setTimeout(hide_head,50);
 }
-
-
-
-
-

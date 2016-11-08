@@ -21,6 +21,10 @@
 	        <span>Logout</span>
 	        <span>Get out of Game!</span>
 	    </a>
+        <a href="{% url 'users:change_password' %}">
+            <span>Change Passwd</span>
+            <span>Bored of Previous Passwd</span>
+        </a>
 	{% else %}
 		<a href="{% url 'users:login' %}" >
 	        <span>Login</span>

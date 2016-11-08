@@ -1,0 +1,54 @@
+{% extends "users/base.html" %}
+{% load staticfiles %}
+
+
+{% block title %}
+	NJATH Activation
+{% endblock title %}
+
+
+
+{% block files %}
+
+{% endblock files %}
+
+
+
+{% block navigation_bar %}
+	{% if not request.user.is_authenticated %}
+	    <a href="{% url 'users:login' %}" >
+	        <span>Login</span>
+	        <span>Start the Awesome</span>
+	    </a>
+
+	    <a href="{% url 'users:register' %}">
+	        <span>Register</span>
+	        <span>New to the challenge ?</span>
+	    </a>
+    {% else %}
+	    <a href="{% url 'users:logout' %}">
+	        <span>Logout</span>
+	        <span>Get out of Game!</span>
+	    </a>
+    {% endif %}
+    <a href="{% url 'game:rules' %}">
+        <span>Rules</span>
+        <span>The law of the Land!!!</span>
+    </a>
+
+    <a href="{% url 'game:leaderboard' %}">
+        <span>Leaderboard</span>
+        <span>View the Leaderboard</span>
+    </a>
+{% endblock navigation_bar %}
+
+
+
+{% block content %}
+	<br><br><br>
+	<div class='activation_link'>
+	<h1> {{ message }} </h1>
+	<h3>Didn't received activation email 
+	<a href="{% url 'users:resend_activation_link' %}">send again</a></h3>
+	</div>
+{% endblock content %}

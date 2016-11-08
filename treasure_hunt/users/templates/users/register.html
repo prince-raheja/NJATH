@@ -3,10 +3,12 @@
 
 
 {% block title %}
-	Njath Login
+	Njath Register
 {% endblock title %}
 
 {% block files %}
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+	<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
 	<link href="{% static 'css/register.css' %}" type="text/css" rel="stylesheet" />
 	<script src="{% static 'js/register.js' %}"></script>
 {% endblock files %}
@@ -68,6 +70,7 @@
 				<input class="confirmpasswordinput" id="id_confirm_password" type="password" name="confirm_password" placeholder="same as above"> <span id="error_matching" style="color:red"></span>
 		</p>
 
+		<div class="g-recaptcha" data-sitekey="{{recaptcha_public_key}}"></div>
 
 		<p class="signin button">
 		<input type="button" class="btn btn-primary" value="Submit" onclick="register_check()">
@@ -77,6 +80,12 @@
 		Already a member ?<a href="{% url 'users:login' %}" class="to_register"> Go and log in </a>
         </p>
 	</form>
+
+	<div id="csrf">
+		<form id="csrf_form" method="post">
+			{% csrf_token %}
+		</form>
+	</div>
 </div>
 
 {% endblock content %}
